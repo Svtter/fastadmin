@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   fastadmin:
@@ -8,8 +8,10 @@ services:
     ports:
       - "8080:80"
     volumes:
+      # 挂载源代码，但排除vendor目录
       - ./:/var/www/html
+      # 使用匿名卷保护vendor目录，防止被主机目录覆盖
+      - /var/www/html/vendor
     environment:
       - TZ=Asia/Shanghai
     restart: unless-stopped
-
