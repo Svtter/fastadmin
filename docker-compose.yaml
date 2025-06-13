@@ -1,0 +1,16 @@
+# 文件名：docker-compose.yml
+
+services:
+  fastadmin:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastadmin-dev
+    ports:
+      - "8080:80"  # 本地访问 8080 映射到容器 80
+    volumes:
+      - ./fastadmin:/var/www/html  # 本地源码目录挂载到容器
+    environment:
+      - TZ=Asia/Shanghai
+    restart: unless-stopped
+
